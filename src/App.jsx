@@ -6,16 +6,15 @@ import Register from "./components/pages/Register.jsx";
 import Home from "./components/pages/home/Home.jsx";
 import Payment from "./components/pages/payment/Payment.jsx";
 import DocumentForm from "./components/pages/payment/DocumentForm.jsx";
-import PaymentPrivate from "./components/privateRoutes/PaymentPrivate.jsx";
 import DashboardLayout from "./components/pages/dashboard/DashboardLayout.jsx";
 import AllPayments from "./components/pages/dashboard/adminDashboard/payments/AllPayments.jsx";
-import AllDocuments from "./components/pages/dashboard/adminDashboard/verification/AllDocuments.jsx";
-import MyPayments from "./components/pages/dashboard/userDashboard/MyPayments.jsx"; // New user route
-import Verification from "./components/pages/dashboard/userDashboard/Verification.jsx"; // New user route
+import AllDocuments from "./components/pages/dashboard/adminDashboard/verification/AllDocuments.jsx"; // New user route
 import { useAuth } from "@/features/auth/useAuth"; // Assuming useAuth is in the same directory
+import MyPayments from "./components/pages/dashboard/userDashboard/payments/MyPayments.jsx";
+import MyDocuments from "./components/pages/dashboard/userDashboard/verification/MyDocuments.jsx";
 
 function App() {
-  const { userData, loading } = useAuth(); // Fetch user data and loading state
+  const { userData, loading } = useAuth(); 
 
   // If user data is still loading, you might want to show a loading screen
   if (loading) {
@@ -35,9 +34,9 @@ function App() {
         <Route
           path="/payment-verify"
           element={
-            <PaymentPrivate>
+            // <PaymentPrivate>
               <DocumentForm />
-            </PaymentPrivate>
+            // </PaymentPrivate>
           }
         />
 
@@ -53,7 +52,7 @@ function App() {
             <>
               {/* User Routes */}
               <Route path="/dashboard/my-payments" element={<MyPayments />} />
-              <Route path="/dashboard/verification" element={<Verification />} />
+              <Route path="/dashboard/verification" element={<MyDocuments/>} />
             </>
           ) : null}
         </Route>

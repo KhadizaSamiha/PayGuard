@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table"; // Import ShadCN table components
 import DocumentPreview from "../../DocumentPreview";
 
-const DocumentsTable = ({ documents, onStatusChange }) => {
+const MyDocumentsTable = ({ documents}) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const [selectedDocument, setSelectedDocument] = useState(null); // Selected document
 
@@ -32,7 +32,6 @@ const DocumentsTable = ({ documents, onStatusChange }) => {
             <TableHead>User Id</TableHead>
             <TableHead>Document</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead className="ps-16">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -59,20 +58,6 @@ const DocumentsTable = ({ documents, onStatusChange }) => {
                 >
                   {document.status}
                 </TableCell>
-                <TableCell>
-                  <button
-                    onClick={() => onStatusChange(document._id, "approved")}
-                    className="bg-blue-400 px-3 py-1.5 rounded-lg text-white me-2"
-                  >
-                    Approve
-                  </button>
-                  <button
-                    onClick={() => onStatusChange(document._id, "rejected")}
-                    className="bg-red-400 px-3 py-1.5 rounded-lg text-white"
-                  >
-                    Reject
-                  </button>
-                </TableCell>
               </TableRow>
             ))
           ) : (
@@ -93,4 +78,4 @@ const DocumentsTable = ({ documents, onStatusChange }) => {
   );
 };
 
-export default DocumentsTable;
+export default MyDocumentsTable;

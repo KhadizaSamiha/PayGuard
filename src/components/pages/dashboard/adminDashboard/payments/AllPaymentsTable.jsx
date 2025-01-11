@@ -1,12 +1,11 @@
 import React from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"; // Import ShadCN table components
 
-const PaymentsTable = ({ payments }) => {
+const AllPaymentsTable = ({ payments , onStatusChange}) => {
   return (
     <Table className="min-w-full">
       <TableHeader>
         <TableRow>
-          <TableHead>Payment ID</TableHead>
           <TableHead>Title</TableHead>
           <TableHead>Amount</TableHead>
           <TableHead>Status</TableHead>
@@ -16,8 +15,7 @@ const PaymentsTable = ({ payments }) => {
       <TableBody>
         {payments.length > 0 ? (
           payments.map((payment) => (
-            <TableRow key={payment.id}>
-              <TableCell>{payment.user_id}</TableCell>
+            <TableRow key={payment._id}>
               <TableCell>{payment.title}</TableCell>
               <TableCell>${payment.amount}</TableCell>
               <TableCell
@@ -32,8 +30,8 @@ const PaymentsTable = ({ payments }) => {
                 {payment.status}
               </TableCell>
               <TableCell>
-                <button className="bg-blue-400 px-3 py-1.5 rounded-lg text-white me-2">Approve</button>
-                <button className="bg-red-400 px-3 py-1.5 rounded-lg text-white">Reject</button>
+                <button onClick={() => onStatusChange(payment._id, "approved")} className="bg-blue-400 px-3 py-1.5 rounded-lg text-white me-2">Approve</button>
+                <button onClick={() => onStatusChange(payment._id, "rejected")} className="bg-red-400 px-3 py-1.5 rounded-lg text-white">Reject</button>
               </TableCell>
             </TableRow>
           ))
@@ -49,4 +47,4 @@ const PaymentsTable = ({ payments }) => {
   );
 };
 
-export default PaymentsTable;
+export default AllPaymentsTable;
