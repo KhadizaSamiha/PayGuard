@@ -12,7 +12,7 @@ const PaymentForm = () => {
   const [message, setMessage] = useState("");
 
   const { user } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const stripe = useStripe();
   const elements = useElements();
@@ -21,9 +21,12 @@ const PaymentForm = () => {
     if (amount > 0) {
       const fetchClientSecret = async () => {
         try {
-          const response = await axios.post("http://localhost:3000/create-payment-intent", {
-            price: amount,
-          });
+          const response = await axios.post(
+            "http://localhost:3000/create-payment-intent",
+            {
+              price: amount,
+            }
+          );
           setClientSecret(response.data.clientSecret);
         } catch (error) {
           console.error("Error fetching client secret:", error);
@@ -68,8 +71,8 @@ const PaymentForm = () => {
       setLoading(false);
       return;
     } else {
-      console.log(paymentMethod); 
-    //   setMessage("Payment method created successfully!");
+      console.log(paymentMethod);
+      //   setMessage("Payment method created successfully!");
       setLoading(false);
     }
 
@@ -102,7 +105,10 @@ const PaymentForm = () => {
           await axios.post("http://localhost:3000/payments", payment);
           setTitle("");
           setAmount(0);
-          navigate('/payment-verify');
+          // Save payment status in localStorage
+          localStorage.setItem("isPaymentDone", true);
+
+          navigate("/payment-verify");
         } catch (error) {
           setMessage("Error saving payment");
         }
@@ -121,7 +127,7 @@ const PaymentForm = () => {
         <label className="block text-sm font-medium mb-2">Title</label>
         <input
           type="text"
-         placeholder="Enter title"
+          placeholder="Enter title"
           onChange={(e) => setTitle(e.target.value)}
           required
           className="w-full p-2 border border-gray-300 rounded-md"

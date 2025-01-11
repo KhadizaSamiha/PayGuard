@@ -38,4 +38,5 @@ export const register = async (email, password, fullName) => {
 export const logout = async () => {
   const { error } = await supabase.auth.signOut();
   if (error) throw new Error(error.message);
+  localStorage.removeItem("isPaymentDone");
 };

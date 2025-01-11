@@ -6,6 +6,7 @@ import Register from "./components/pages/Register.jsx";
 import Home from "./components/pages/home/Home.jsx";
 import Payment from "./components/pages/payment/Payment.jsx";
 import DocumentForm from "./components/pages/payment/DocumentForm.jsx";
+import PaymentPrivate from "./components/privateRoutes/PaymentPrivate.jsx";
 
 const routes = [
   { path: "/", component: Home },
@@ -21,7 +22,19 @@ function App() {
       <ToastContainer />
       <Routes>
         {routes.map(({ path, component: Component }, index) => (
-          <Route key={index} path={path} element={<Component />} />
+          <Route
+            key={index}
+            path={path}
+            element={
+              path === "/payment-verify" ? (
+                <PaymentPrivate>
+                  <Component />
+                </PaymentPrivate>
+              ) : (
+                <Component />
+              )
+            }
+          />
         ))}
       </Routes>
     </BrowserRouter>
