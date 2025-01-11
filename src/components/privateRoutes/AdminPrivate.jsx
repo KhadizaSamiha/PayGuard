@@ -1,10 +1,11 @@
+import { useAuth } from "@/features/auth/useAuth";
 import React from "react";
 import { Navigate } from "react-router-dom";
 
 const AdminPrivate = ({ children }) => {
-  const user = JSON.parse(localStorage.getItem("user")); 
+  const {userData} = useAuth(); 
 
-  if (!user || user.role !== "admin") {
+  if (!userData || userData.role !== "admin") {
     return <Navigate to="/login" />;
   }
 

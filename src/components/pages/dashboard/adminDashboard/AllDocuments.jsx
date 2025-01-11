@@ -4,7 +4,6 @@ const AllDocuments = () => {
   const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
-    // Fetch documents data
     fetch("http://localhost:3000/documents")
       .then((response) => response.json())
       .then((data) => setDocuments(data));

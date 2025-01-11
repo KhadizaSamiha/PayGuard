@@ -10,12 +10,23 @@ import PaymentPrivate from "./components/privateRoutes/PaymentPrivate.jsx";
 import DashboardLayout from "./components/pages/dashboard/DashboardLayout.jsx";
 import AllPayments from "./components/pages/dashboard/adminDashboard/AllPayments.jsx";
 import AllDocuments from "./components/pages/dashboard/adminDashboard/AllDocuments.jsx";
+import MyPayments from "./components/pages/dashboard/userDashboard/MyPayments.jsx"; // New user route
+import Verification from "./components/pages/dashboard/userDashboard/Verification.jsx"; // New user route
+import { useAuth } from "@/features/auth/useAuth"; // Assuming useAuth is in the same directory
 
 function App() {
+  const { userData, loading } = useAuth(); // Fetch user data and loading state
+
+  // If user data is still loading, you might want to show a loading screen
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <BrowserRouter>
       <ToastContainer />
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -29,10 +40,22 @@ function App() {
             </PaymentPrivate>
           }
         />
-        {/* Dashboard with nested routes */}
+
+        {/* Dashboard Routes */}
         <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route path="all-payments" element={<AllPayments />} />
-          <Route path="all-documents" element={<AllDocuments />} />
+          {userData?.role === "admin" ? (
+            <>
+              {/* Admin Routes */}
+              <Route path="/dashboard/all-payments" element={<AllPayments />} />
+              <Route path="/dashboard/all-documents" element={<AllDocuments />} />
+            </>
+          ) : userData?.role === "user" ? (
+            <>
+              {/* User Routes */}
+              <Route path="/dashboard/my-payments" element={<MyPayments />} />
+              <Route path="/dashboard/verification" element={<Verification />} />
+            </>
+          ) : null}
         </Route>
       </Routes>
     </BrowserRouter>

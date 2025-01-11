@@ -7,9 +7,9 @@ import Avatar from '/avatar.png'
 import { useState, useRef, useEffect } from "react";
 
 const Navbar = () => {
-  const { user, loading } = useAuth();
-  const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { user, loading , userData} = useAuth();
+  const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
   const logoutHandler = async () => {
