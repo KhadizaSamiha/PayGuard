@@ -3,6 +3,7 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useAuth } from "@/features/auth/useAuth";
 import { showToast } from "@/utils/toastUtils";
+import { useNavigate } from "react-router-dom";
 const PaymentForm = () => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState(0);
@@ -11,6 +12,7 @@ const PaymentForm = () => {
   const [message, setMessage] = useState("");
 
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   const stripe = useStripe();
   const elements = useElements();
@@ -66,8 +68,8 @@ const PaymentForm = () => {
       setLoading(false);
       return;
     } else {
-      console.log(paymentMethod); // Should log the payment method details
-      setMessage("Payment method created successfully!");
+      console.log(paymentMethod); 
+    //   setMessage("Payment method created successfully!");
       setLoading(false);
     }
 
@@ -100,7 +102,7 @@ const PaymentForm = () => {
           await axios.post("http://localhost:3000/payments", payment);
           setTitle("");
           setAmount(0);
-          setMessage("Payment Successfull");
+          navigate('/payment-verify');
         } catch (error) {
           setMessage("Error saving payment");
         }

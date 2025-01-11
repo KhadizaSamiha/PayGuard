@@ -22,6 +22,7 @@ export const register = async (email, password, fullName) => {
     email,
     password,
     role: 'user',
+    user_id: data.user.id,
     createdAt: new Date(),
   };
 
