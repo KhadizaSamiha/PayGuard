@@ -10,6 +10,7 @@ export const useAuth = () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
+      console.log(user);
       setUser(user);
     } catch {
       setUser(null);

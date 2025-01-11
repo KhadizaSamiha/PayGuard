@@ -20,7 +20,8 @@ export const register = async (email, password, fullName) => {
   // Save user to MongoDB after successful registration
   const user = {
     email,
-    fullName,
+    password,
+    role: 'user',
     createdAt: new Date(),
   };
 
