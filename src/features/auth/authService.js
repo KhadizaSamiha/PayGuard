@@ -1,4 +1,5 @@
 import { supabase } from "@/config";
+import axios from "axios";
 
 export const login = async (email, password) => {
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
@@ -15,6 +16,20 @@ export const register = async (email, password, fullName) => {
     },
   });
   if (error) throw new Error(error.message);
+
+  // Save user to MongoDB after successful registration
+  const user = {
+    email,
+    fullName,
+    createdAt: new Date(),
+  };
+
+  try {
+    await axios.post("http://localhost:3000/users", user); // Replace with your backend URL
+  } catch (error) {
+    console.error("Failed to save user to MongoDB:", error);
+  }
+
   return data;
 };
 
