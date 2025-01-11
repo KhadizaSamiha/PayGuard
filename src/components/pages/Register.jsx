@@ -22,7 +22,7 @@ export default function Register() {
           return;
         }
         await register(form.email, form.password, form.name);
-        navigate("/");
+        navigate("/home");
         showToast("Registration Successfull!");
       } catch (error) {
         showToast(error.message, "error");

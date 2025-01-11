@@ -9,7 +9,8 @@ import DocumentForm from "./components/pages/payment/DocumentForm.jsx";
 import PaymentPrivate from "./components/privateRoutes/PaymentPrivate.jsx";
 
 const routes = [
-  { path: "/", component: Home },
+  { path: "/", component: Login },
+  { path: "/home", component: Home },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
   { path: "/payment", component: Payment },

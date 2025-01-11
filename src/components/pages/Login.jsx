@@ -22,7 +22,7 @@ export default function Login() {
         return;
       }
       await login(form.email, form.password);
-      navigate("/");
+      navigate("/home");
       showToast("Login Success");
     } catch (error) {
       showToast("Login Failed", "error");
