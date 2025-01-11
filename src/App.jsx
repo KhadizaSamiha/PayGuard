@@ -8,8 +8,8 @@ import Payment from "./components/pages/payment/Payment.jsx";
 import DocumentForm from "./components/pages/payment/DocumentForm.jsx";
 import PaymentPrivate from "./components/privateRoutes/PaymentPrivate.jsx";
 import DashboardLayout from "./components/pages/dashboard/DashboardLayout.jsx";
-import AllPayments from "./components/pages/dashboard/adminDashboard/AllPayments.jsx";
-import AllDocuments from "./components/pages/dashboard/adminDashboard/AllDocuments.jsx";
+import AllPayments from "./components/pages/dashboard/adminDashboard/payments/AllPayments.jsx";
+import AllDocuments from "./components/pages/dashboard/adminDashboard/verification/AllDocuments.jsx";
 import MyPayments from "./components/pages/dashboard/userDashboard/MyPayments.jsx"; // New user route
 import Verification from "./components/pages/dashboard/userDashboard/Verification.jsx"; // New user route
 import { useAuth } from "@/features/auth/useAuth"; // Assuming useAuth is in the same directory
