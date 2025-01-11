@@ -7,36 +7,33 @@ import Home from "./components/pages/home/Home.jsx";
 import Payment from "./components/pages/payment/Payment.jsx";
 import DocumentForm from "./components/pages/payment/DocumentForm.jsx";
 import PaymentPrivate from "./components/privateRoutes/PaymentPrivate.jsx";
-
-const routes = [
-  { path: "/", component: Login },
-  { path: "/home", component: Home },
-  { path: "/login", component: Login },
-  { path: "/register", component: Register },
-  { path: "/payment", component: Payment },
-  { path: "/payment-verify", component: DocumentForm },
-];
+import DashboardLayout from "./components/pages/dashboard/DashboardLayout.jsx";
+import AllPayments from "./components/pages/dashboard/adminDashboard/AllPayments.jsx";
+import AllDocuments from "./components/pages/dashboard/adminDashboard/AllDocuments.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <ToastContainer />
       <Routes>
-        {routes.map(({ path, component: Component }, index) => (
-          <Route
-            key={index}
-            path={path}
-            element={
-              path === "/payment-verify" ? (
-                <PaymentPrivate>
-                  <Component />
-                </PaymentPrivate>
-              ) : (
-                <Component />
-              )
-            }
-          />
-        ))}
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route
+          path="/payment-verify"
+          element={
+            <PaymentPrivate>
+              <DocumentForm />
+            </PaymentPrivate>
+          }
+        />
+        {/* Dashboard with nested routes */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="all-payments" element={<AllPayments />} />
+          <Route path="all-documents" element={<AllDocuments />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
