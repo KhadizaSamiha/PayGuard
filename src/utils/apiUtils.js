@@ -13,7 +13,7 @@ export const uploadToImgBB = async (file, apiKey) => {
 };
 
 export const saveToDatabase = async (userId, fileUrl, status = "pending") => {
-  await axios.post("http://localhost:3000/documents", {
+  await axios.post("https://payguard-server-production.up.railway.app/documents", {
     user_id: userId,
     fileUrl,
     status,

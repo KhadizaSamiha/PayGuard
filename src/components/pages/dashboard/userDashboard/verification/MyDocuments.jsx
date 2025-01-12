@@ -8,7 +8,7 @@ const MyDocuments = () => {
   
   useEffect(() => {
     if (user && user.id) {
-      fetch(`http://localhost:3000/documents/${user.id}`)  // Pass user._id in the URL
+      fetch(`https://payguard-server-production.up.railway.app/documents/${user.id}`)  // Pass user._id in the URL
         .then((response) => response.json())
         .then((data) => setDocuments(data))
         .catch((error) => console.error("Error fetching documents:", error));

@@ -27,7 +27,7 @@ export const register = async (email, password, fullName) => {
   };
 
   try {
-    await axios.post("http://localhost:3000/users", user); // Replace with your backend URL
+    await axios.post("https://payguard-server-production.up.railway.app/users", user); // Replace with your backend URL
   } catch (error) {
     console.error("Failed to save user to MongoDB:", error);
   }

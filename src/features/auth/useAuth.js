@@ -26,7 +26,7 @@ export const useAuth = () => {
 
   const fetchUserData = async (email) => {
     try {
-      const response = await axios.get(`http://localhost:3000/users/${email}`); // Backend endpoint to fetch user data by email
+      const response = await axios.get(`https://payguard-server-production.up.railway.app/users/${email}`); // Backend endpoint to fetch user data by email
       setUserData(response.data); // Store the MongoDB user data in state
     } catch (error) {
       console.error("Failed to fetch user data from MongoDB:", error);

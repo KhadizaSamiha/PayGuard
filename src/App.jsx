@@ -38,7 +38,6 @@ function App() {
 
         {/* Dashboard Routes */}
         <Route path="/dashboard" element={<DashboardLayout userData={userData}/>}>
-          {/* Show Dashboard component at /dashboard */}
           <Route index element={<Dashboard />} />
 
           {userData?.role === "admin" ? (

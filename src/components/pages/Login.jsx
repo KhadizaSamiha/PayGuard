@@ -23,17 +23,17 @@ export default function Login() {
       }
       await login(form.email, form.password);
       navigate("/home");
-      showToast("Login Success");
+      showToast("Login Successfull!");
     } catch (error) {
       showToast("Login Failed", "error");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-blue-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
         <div className="space-y-1 mb-6">
-          <h2 className="text-2xl font-bold text-center text-gray-900">
+          <h2 className="text-2xl font-bold text-center text-blue-600">
             Login
           </h2>
           <p className="text-center text-gray-600">
@@ -47,7 +47,7 @@ export default function Login() {
               id="email"
               type="email"
               name="email"
-              placeholder="m@example.com"
+              placeholder="your email"
               onChange={onChangeHandler}
               required
             />
@@ -58,11 +58,12 @@ export default function Login() {
               id="password"
               type="password"
               name="password"
+              placeholder="your password"
               onChange={onChangeHandler}
               required
             />
           </div>
-          <Button className="w-full" type="submit">
+          <Button className="w-full bg-blue-600 hover:bg-blue-500" type="submit">
             Sign In
           </Button>
         </form>
@@ -71,7 +72,7 @@ export default function Login() {
             Don't have an account?{" "}
             <Link
               to={"/register"}
-              className="text-blue-600 hover:text-blue-800"
+              className="text-blue-700 hover:text-blue-800"
             >
               Register
             </Link>

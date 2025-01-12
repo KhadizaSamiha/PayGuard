@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [payments, setPayments] = useState([]);
   
   useEffect(() => {
-    fetch("http://localhost:3000/payments")
+    fetch("https://payguard-server-production.up.railway.app/payments")
       .then((response) => response.json())
       .then((data) => {
         setPayments(data);

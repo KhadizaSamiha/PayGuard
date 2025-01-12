@@ -12,7 +12,7 @@ const Banner = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-80"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-85"></div>
 
       {/* Content */}
       <div className="relative text-center text-white px-6 max-w-3xl">

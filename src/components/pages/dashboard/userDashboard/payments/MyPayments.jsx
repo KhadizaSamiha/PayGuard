@@ -17,7 +17,7 @@ const MyPayments = () => {
 
   useEffect(() => {
     if (user && user.id) {
-      fetch(`http://localhost:3000/payments/${user.id}`)
+      fetch(`https://payguard-server-production.up.railway.app/payments/${user.id}`)
         .then((response) => response.json())
         .then((data) => {
           setPayments(data);

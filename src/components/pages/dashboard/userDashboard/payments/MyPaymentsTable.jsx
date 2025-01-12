@@ -29,7 +29,7 @@ const MyPaymentsTable = ({ payments, onStatusChange }) => {
   });
 
   const handleDownloadInvoice = (paymentId) => {
-    window.open(`http://localhost:3000/invoice/${paymentId}`, "_blank");
+    window.open(`https://payguard-server-production.up.railway.app/invoice/${paymentId}`, "_blank");
   };
 
   return (

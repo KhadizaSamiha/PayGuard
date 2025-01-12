@@ -32,9 +32,9 @@ const DocumentForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full">
-        <h2 className="text-2xl font-bold mb-4 text-center">Upload Document</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-800 p-4">
+      <div className="bg-gray-600 rounded-lg shadow-lg p-6 max-w-lg w-full">
+        <h2 className="text-2xl font-bold mb-4 text-center text-white">Upload Document</h2>
         <FileInput
           onFileSelect={setFile}
           accept=".pdf, .jpg, .png"
@@ -42,7 +42,7 @@ const DocumentForm = () => {
         />
         <button
           onClick={handleFileUpload}
-          className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
+          className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-500 transition"
         >
           Upload Document
         </button>

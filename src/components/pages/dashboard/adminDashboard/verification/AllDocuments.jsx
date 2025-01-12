@@ -6,14 +6,14 @@ const AllDocuments = () => {
 
   useEffect(() => {
     // Fetch documents data
-    fetch("http://localhost:3000/documents")
+    fetch("https://payguard-server-production.up.railway.app/documents")
       .then((response) => response.json())
       .then((data) => setDocuments(data));
   }, []);
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:3000/documents/${id}`, {
+      const response = await fetch(`https://payguard-server-production.up.railway.app/documents/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -29,10 +29,10 @@ export default function Register() {
       }
     };
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-blue-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
         <div className="space-y-1 mb-6">
-          <h2 className="text-2xl font-bold text-center text-gray-900">
+          <h2 className="text-2xl font-bold text-center text-blue-600">
             Sign Up
           </h2>
           <p className="text-center text-gray-600">
@@ -46,7 +46,7 @@ export default function Register() {
               id="name"
               type="text"
               name="name"
-              placeholder="Jhon Doe"
+              placeholder="your name"
               onChange={onChangeHandler}
               required
             />
@@ -57,7 +57,7 @@ export default function Register() {
               id="email"
               type="email"
               name="email"
-              placeholder="jhon@example.com"
+              placeholder="your email"
               onChange={onChangeHandler}
               required
             />
@@ -68,18 +68,19 @@ export default function Register() {
               id="password"
               type="password"
               name="password"
+              placeholder="your password"
               onChange={onChangeHandler}
               required
             />
           </div>
-          <Button className="w-full" type="submit">
+          <Button className="w-full bg-blue-600 hover:bg-blue-500" type="submit">
             Sign Up
           </Button>
         </form>
         <div className="mt-6 space-y-2">
           <div className="text-sm text-center">
             Already have an account?{" "}
-            <Link to={"/Login"} className="text-blue-600 hover:text-blue-800">
+            <Link to={"/Login"} className="text-blue-700 hover:text-blue-800">
               Login
             </Link>
           </div>

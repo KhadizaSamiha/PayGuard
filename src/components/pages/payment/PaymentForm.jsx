@@ -22,7 +22,7 @@ const PaymentForm = () => {
       const fetchClientSecret = async () => {
         try {
           const response = await axios.post(
-            "http://localhost:3000/create-payment-intent",
+            "https://payguard-server-production.up.railway.app/create-payment-intent",
             {
               price: amount,
             }
@@ -102,7 +102,7 @@ const PaymentForm = () => {
           created_at: new Date(),
         };
         try {
-          await axios.post("http://localhost:3000/payments", payment);
+          await axios.post("https://payguard-server-production.up.railway.app/payments", payment);
           setTitle("");
           setAmount(0);
           
@@ -122,7 +122,7 @@ const PaymentForm = () => {
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto px-4 pb-16 pt-10 bg-gray-600 shadow-lg rounded-lg text-white"
       >
-        <h2 className="text-2xl font-semibold mb-6 text-center">Payment Form</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-center">Make Payment Request</h2>
 
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">Title</label>
