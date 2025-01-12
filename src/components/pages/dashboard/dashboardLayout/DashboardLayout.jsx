@@ -2,10 +2,11 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import SidebarItems from "./SidebarItems";
 import { IoHomeSharp } from "react-icons/io5";
+import Loader from "../../Loader";
 
 const DashboardLayout = ({ userData }) => {
   if (!userData) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (

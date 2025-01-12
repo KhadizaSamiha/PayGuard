@@ -13,12 +13,13 @@ import { useAuth } from "@/features/auth/useAuth";
 import MyPayments from "./components/pages/dashboard/userDashboard/payments/MyPayments.jsx";
 import MyDocuments from "./components/pages/dashboard/userDashboard/verification/MyDocuments.jsx";
 import Dashboard from "./components/pages/dashboard/dashboardLayout/Dashboard.jsx";
+import Loader from "./components/pages/Loader.jsx";
 
 function App() {
   const { userData, loading } = useAuth(); 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (
