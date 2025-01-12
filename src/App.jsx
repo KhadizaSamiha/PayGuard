@@ -6,12 +6,13 @@ import Register from "./components/pages/Register.jsx";
 import Home from "./components/pages/home/Home.jsx";
 import Payment from "./components/pages/payment/Payment.jsx";
 import DocumentForm from "./components/pages/payment/DocumentForm.jsx";
-import DashboardLayout from "./components/pages/dashboard/DashboardLayout.jsx";
+import DashboardLayout from "./components/pages/dashboard/dashboardLayout/DashboardLayout.jsx";
 import AllPayments from "./components/pages/dashboard/adminDashboard/payments/AllPayments.jsx";
-import AllDocuments from "./components/pages/dashboard/adminDashboard/verification/AllDocuments.jsx"; // New user route
-import { useAuth } from "@/features/auth/useAuth"; // Assuming useAuth is in the same directory
+import AllDocuments from "./components/pages/dashboard/adminDashboard/verification/AllDocuments.jsx"; 
+import { useAuth } from "@/features/auth/useAuth"; 
 import MyPayments from "./components/pages/dashboard/userDashboard/payments/MyPayments.jsx";
 import MyDocuments from "./components/pages/dashboard/userDashboard/verification/MyDocuments.jsx";
+import Dashboard from "./components/pages/dashboard/dashboardLayout/Dashboard.jsx";
 
 function App() {
   const { userData, loading } = useAuth(); 
@@ -33,15 +34,14 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route
           path="/payment-verify"
-          element={
-            // <PaymentPrivate>
-              <DocumentForm />
-            // </PaymentPrivate>
-          }
+          element={<DocumentForm />}
         />
 
         {/* Dashboard Routes */}
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<DashboardLayout userData={userData}/>}>
+          {/* Show Dashboard component at /dashboard */}
+          <Route index element={<Dashboard />} /> {/* This line renders Dashboard component */}
+
           {userData?.role === "admin" ? (
             <>
               {/* Admin Routes */}
@@ -52,7 +52,7 @@ function App() {
             <>
               {/* User Routes */}
               <Route path="/dashboard/my-payments" element={<MyPayments />} />
-              <Route path="/dashboard/my-documents" element={<MyDocuments/>} />
+              <Route path="/dashboard/my-documents" element={<MyDocuments />} />
             </>
           ) : null}
         </Route>
@@ -60,5 +60,6 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 export default App;
