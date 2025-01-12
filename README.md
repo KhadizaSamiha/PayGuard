@@ -9,6 +9,15 @@ This project is a secure **Payment Management and Verification System** featurin
 - Admin dashboard with analytics and filters.
 
 ---
+## Sample Test Credentials:
+#### Admin Login:
+ - Email: khadizasamiha7@gmail.com
+ - Password: samiha17
+#### User Login:
+ - Email: samihadev7@gmail.com
+ - Password: samiha17
+
+---
 
 ## Features
 
@@ -64,9 +73,7 @@ This project is a secure **Payment Management and Verification System** featurin
 Add the following environment variables to your `.env` file:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-DATABASE_URL=your_database_url
-STRIPE_SECRET_KEY=your_stripe_secret_key
-STRIPE_PUBLIC_KEY=your_stripe_public_key
+VITE_SUPABASE_URL = https://fbreoonkhaqatovmaorj.supabase.co
+VITE_SUPABASE_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZicmVvb25raGFxYXRvdm1hb3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY0ODg5MDEsImV4cCI6MjA1MjA2NDkwMX0.XiaLdYmmNNTJnk-vTxNqG6IzwQMLAMmB65Mq3kRVBGs
+VITE_STRIPE_PUBLIC_KEY = pk_test_51NHu7HJ1paocsSu8e9uKzhOoYIwHtSotmrhrX1WDFtSMbCQnTEaladuwP3k3OVUrCwAkJ9rjETv79YDZEe0NApFm00nwj4EKxA
+VITE_IMGBB_API_KEY = 72be915eb228835d7dac0ba94c7f2304
