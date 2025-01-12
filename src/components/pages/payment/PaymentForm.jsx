@@ -105,7 +105,6 @@ const PaymentForm = () => {
           await axios.post("http://localhost:3000/payments", payment);
           setTitle("");
           setAmount(0);
-          // Save payment status in localStorage
           localStorage.setItem("isPaymentDone", true);
 
           navigate("/payment-verify");
@@ -117,73 +116,75 @@ const PaymentForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-lg mx-auto p-4 bg-white shadow-lg rounded-lg"
-    >
-      <h2 className="text-2xl font-semibold mb-4">Payment Form</h2>
+    <div className="bg-gray-800 h-screen py-20">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-lg mx-auto px-4 pb-16 pt-10 bg-gray-600 shadow-lg rounded-lg text-white"
+      >
+        <h2 className="text-2xl font-semibold mb-6 text-center">Payment Form</h2>
 
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Title</label>
-        <input
-          type="text"
-          placeholder="Enter title"
-          onChange={(e) => setTitle(e.target.value)}
-          required
-          className="w-full p-2 border border-gray-300 rounded-md"
-        />
-      </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">Title</label>
+          <input
+            type="text"
+            placeholder="Enter title"
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className="w-full p-2 border border-gray-500 bg-slate-300 rounded-md"
+          />
+        </div>
 
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Amount (USD)</label>
-        <input
-          type="number"
-          placeholder="Enter amount"
-          onChange={(e) => setAmount(e.target.value)}
-          required
-          min="1"
-          className="w-full p-2 border border-gray-300 rounded-md"
-        />
-      </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">Amount (USD)</label>
+          <input
+            type="number"
+            placeholder="Enter amount"
+            onChange={(e) => setAmount(e.target.value)}
+            required
+            min="1"
+            className="w-full p-2 border border-gray-500 bg-slate-300 rounded-md"
+          />
+        </div>
 
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Card Details</label>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">Card Details</label>
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
+                  color: "#424770",
+                  "::placeholder": {
+                    color: "#aab7c4",
+                  },
+                },
+                invalid: {
+                  color: "#9e2146",
                 },
               },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-      </div>
-
-      <button
-        type="submit"
-        disabled={!stripe || !elements || loading || !clientSecret}
-        className="w-full p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-      >
-        {loading ? "Processing..." : "Pay"}
-      </button>
-
-      {message && (
-        <div
-          className={`mt-4 text-sm ${
-            message.includes("failed") ? "text-red-500" : "text-green-500"
-          }`}
-        >
-          {message}
+            }}
+          />
         </div>
-      )}
-    </form>
+
+        <button
+          type="submit"
+          disabled={!stripe || !elements || loading || !clientSecret}
+          className="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-500"
+        >
+          {loading ? "Processing..." : "Pay"}
+        </button>
+
+        {message && (
+          <div
+            className={`mt-4 text-sm ${
+              message.includes("failed") ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {message}
+          </div>
+        )}
+      </form>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "@/features/auth/useAuth";
 import { uploadToImgBB, saveToDatabase } from "@/utils/apiUtils";
-import FileInput from "./DocumentVerification/FileInput";
+import FileInput from "./FileInput";
 import { useNavigate } from "react-router-dom";
 
 const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY;

@@ -7,8 +7,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"; // ShadCN Select component
-
+} from "@/components/ui/select";
+ 
 const MyPayments = () => {
   const [payments, setPayments] = useState([]);
   const [filterStatus, setFilterStatus] = useState(""); // State for the selected filter

@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Register from "./components/pages/Register.jsx";
 import Home from "./components/pages/home/Home.jsx";
 import Payment from "./components/pages/payment/Payment.jsx";
-import DocumentForm from "./components/pages/payment/DocumentForm.jsx";
+import DocumentForm from "./components/pages/payment/DocumentVerification/DocumentForm.jsx";
 import DashboardLayout from "./components/pages/dashboard/dashboardLayout/DashboardLayout.jsx";
 import AllPayments from "./components/pages/dashboard/adminDashboard/payments/AllPayments.jsx";
 import AllDocuments from "./components/pages/dashboard/adminDashboard/verification/AllDocuments.jsx"; 

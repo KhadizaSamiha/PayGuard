@@ -23,10 +23,14 @@ const MyPaymentsTable = ({ payments, onStatusChange }) => {
     const dateA = moment(a.created_at);
     const dateB = moment(b.created_at);
     if (sortOrder === "asc") {
-      return dateA.isBefore(dateB) ? -1 : 1; // Ascending order
+      return dateA.isBefore(dateB) ? -1 : 1; 
     }
-    return dateB.isBefore(dateA) ? -1 : 1; // Descending order
+    return dateB.isBefore(dateA) ? -1 : 1; 
   });
+
+  const handleDownloadInvoice = (paymentId) => {
+    window.open(`http://localhost:3000/invoice/${paymentId}`, "_blank");
+  };
 
   return (
     <Table className="min-w-full">
@@ -46,6 +50,7 @@ const MyPaymentsTable = ({ payments, onStatusChange }) => {
           </TableHead>
           <TableHead>Amount</TableHead>
           <TableHead>Status</TableHead>
+          <TableHead>Invoices</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -67,6 +72,16 @@ const MyPaymentsTable = ({ payments, onStatusChange }) => {
                 }`}
               >
                 {payment.status}
+              </TableCell>
+              <TableCell>
+                {payment.status === "approved" ? (
+                  <button
+                    className="px-2 py-1 bg-blue-500 text-white rounded-md"
+                    onClick={() => handleDownloadInvoice(payment._id)}
+                  >
+                    Download Invoice
+                  </button>
+                ): <p>No Invoices</p>}
               </TableCell>
             </TableRow>
           ))
