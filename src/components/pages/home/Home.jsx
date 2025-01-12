@@ -1,4 +1,5 @@
 
+import Banner from "./Banner";
 import Navbar from "./Navbar";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
   return (
     <div>
       <Navbar/>
+      <Banner/>
     </div>
   );
 };

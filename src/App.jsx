@@ -52,7 +52,7 @@ function App() {
             <>
               {/* User Routes */}
               <Route path="/dashboard/my-payments" element={<MyPayments />} />
-              <Route path="/dashboard/verification" element={<MyDocuments/>} />
+              <Route path="/dashboard/my-documents" element={<MyDocuments/>} />
             </>
           ) : null}
         </Route>

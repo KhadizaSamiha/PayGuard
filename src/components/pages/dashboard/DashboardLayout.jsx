@@ -51,10 +51,10 @@ const DashboardLayout = () => {
                 </li>
                 <li>
                   <Link
-                    to={"/dashboard/verification"}
+                    to={"/dashboard/my-documents"}
                     className="block p-2 hover:bg-gray-700"
                   >
-                    Verification
+                    My Documents
                   </Link>
                 </li>
               </>

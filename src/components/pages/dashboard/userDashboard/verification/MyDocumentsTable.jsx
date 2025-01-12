@@ -29,7 +29,6 @@ const MyDocumentsTable = ({ documents}) => {
       <Table className="min-w-full">
         <TableHeader>
           <TableRow>
-            <TableHead>User Id</TableHead>
             <TableHead>Document</TableHead>
             <TableHead>Status</TableHead>
           </TableRow>
@@ -38,7 +37,7 @@ const MyDocumentsTable = ({ documents}) => {
           {documents.length > 0 ? (
             documents.map((document) => (
               <TableRow key={document.id}>
-                <TableCell>{document.user_id}</TableCell>
+                
                 <TableCell>
                   <button
                     onClick={() => handleViewDocument(document)}
