@@ -11,7 +11,7 @@ const PaymentForm = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const { user } = useAuth();
+  const { user, userData } = useAuth();
   const navigate = useNavigate();
 
   const stripe = useStripe();
@@ -72,7 +72,6 @@ const PaymentForm = () => {
       return;
     } else {
       console.log(paymentMethod);
-      //   setMessage("Payment method created successfully!");
       setLoading(false);
     }
 
@@ -98,6 +97,7 @@ const PaymentForm = () => {
           title,
           amount,
           status: "pending",
+          email: userData.email,
           user_id: user.id,
           created_at: new Date(),
         };
@@ -105,6 +105,7 @@ const PaymentForm = () => {
           await axios.post("http://localhost:3000/payments", payment);
           setTitle("");
           setAmount(0);
+          
           localStorage.setItem("isPaymentDone", true);
 
           navigate("/payment-verify");
@@ -130,7 +131,7 @@ const PaymentForm = () => {
             placeholder="Enter title"
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="w-full p-2 border border-gray-500 bg-slate-300 rounded-md"
+            className="w-full text-black p-2 border border-gray-500 bg-slate-300 rounded-md"
           />
         </div>
 
@@ -142,7 +143,7 @@ const PaymentForm = () => {
             onChange={(e) => setAmount(e.target.value)}
             required
             min="1"
-            className="w-full p-2 border border-gray-500 bg-slate-300 rounded-md"
+            className="w-full p-2 border text-black border-gray-500 bg-slate-300 rounded-md"
           />
         </div>
 
@@ -153,7 +154,7 @@ const PaymentForm = () => {
               style: {
                 base: {
                   fontSize: "16px",
-                  color: "#424770",
+                  color: "#FFFFFF",
                   "::placeholder": {
                     color: "#aab7c4",
                   },

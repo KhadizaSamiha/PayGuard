@@ -59,7 +59,7 @@ const Navbar = () => {
                 <img
                   src={Avatar}
                   alt="User Avatar"
-                  className="h-10 w-10 rounded-full cursor-pointer"
+                  className="h-8 w-8 rounded-full cursor-pointer"
                   onClick={toggleDropdown}
                 />
                 {/* Dropdown Menu */}

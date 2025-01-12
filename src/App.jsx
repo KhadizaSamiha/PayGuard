@@ -17,7 +17,6 @@ import Dashboard from "./components/pages/dashboard/dashboardLayout/Dashboard.js
 function App() {
   const { userData, loading } = useAuth(); 
 
-  // If user data is still loading, you might want to show a loading screen
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -40,7 +39,7 @@ function App() {
         {/* Dashboard Routes */}
         <Route path="/dashboard" element={<DashboardLayout userData={userData}/>}>
           {/* Show Dashboard component at /dashboard */}
-          <Route index element={<Dashboard />} /> {/* This line renders Dashboard component */}
+          <Route index element={<Dashboard />} />
 
           {userData?.role === "admin" ? (
             <>

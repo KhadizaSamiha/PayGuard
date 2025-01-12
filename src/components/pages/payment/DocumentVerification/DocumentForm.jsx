@@ -3,38 +3,50 @@ import { useAuth } from "@/features/auth/useAuth";
 import { uploadToImgBB, saveToDatabase } from "@/utils/apiUtils";
 import FileInput from "./FileInput";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY;
 
 const DocumentForm = () => {
   const [file, setFile] = useState(null);
-  const [status, setStatus] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const handleFileUpload = async () => {
     if (!file) {
-      setStatus("No file selected.");
+      toast.error("No file selected."); 
       return;
     }
 
     try {
-      const imageUrl = await uploadToImgBB(file, imgbbApiKey); // Upload to ImgBB
-      await saveToDatabase(user.id, imageUrl); 
-      localStorage.removeItem('isPaymentDone');
-      setStatus("File uploaded successfully!");
-      navigate('/home')
+      const imageUrl = await uploadToImgBB(file, imgbbApiKey);
+      await saveToDatabase(user.id, imageUrl);
+      localStorage.removeItem("isPaymentDone");
+      toast.success("File uploaded successfully!"); 
+      setTimeout(() => navigate("/home"), 2000);
     } catch (error) {
       console.error("Error during upload:", error);
-      setStatus("Error uploading file.");
+      toast.error("Error uploading file."); 
     }
   };
 
   return (
-    <div>
-      <FileInput onFileSelect={setFile} accept=".pdf, .jpg, .png" />
-      <button onClick={handleFileUpload}>Upload Document</button>
-      <p>{status}</p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full">
+        <h2 className="text-2xl font-bold mb-4 text-center">Upload Document</h2>
+        <FileInput
+          onFileSelect={setFile}
+          accept=".pdf, .jpg, .png"
+          file={file}
+        />
+        <button
+          onClick={handleFileUpload}
+          className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
+        >
+          Upload Document
+        </button>
+      </div>
     </div>
   );
 };

@@ -11,8 +11,8 @@ import {
  
 const MyPayments = () => {
   const [payments, setPayments] = useState([]);
-  const [filterStatus, setFilterStatus] = useState(""); // State for the selected filter
-  const [filteredPayments, setFilteredPayments] = useState([]); // State for filtered payments
+  const [filterStatus, setFilterStatus] = useState(""); 
+  const [filteredPayments, setFilteredPayments] = useState([]); 
   const { user } = useAuth();
 
   useEffect(() => {
