@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
-import AllPaymentsTable from "./AllPaymentsTable"; // Import the child component
+import AllPaymentsTable from "./AllPaymentsTable";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"; // ShadCN Select component
+} from "@/components/ui/select";
 
 const AllPayments = () => {
   const [payments, setPayments] = useState([]);
-  const [filterStatus, setFilterStatus] = useState(""); // State for the selected filter
-  const [filteredPayments, setFilteredPayments] = useState([]); // State for filtered payments
+  const [filterStatus, setFilterStatus] = useState(""); 
+  const [filteredPayments, setFilteredPayments] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/payments")
       .then((response) => response.json())
       .then((data) => {
         setPayments(data);
-        setFilteredPayments(data); // Set initial filtered payments
+        setFilteredPayments(data); 
       });
   }, []);
 
@@ -29,7 +29,7 @@ const AllPayments = () => {
         payments.filter((payment) => payment.status === filterStatus)
       );
     } else {
-      setFilteredPayments(payments); // Show all if no filter is selected
+      setFilteredPayments(payments); 
     }
   }, [filterStatus, payments]);
 
@@ -51,7 +51,7 @@ const AllPayments = () => {
           )
         );
       } else {
-        alert(data.message); // Show any error message from the backend
+        alert(data.message);
       }
     } catch (error) {
       console.error(error);
@@ -72,7 +72,7 @@ const AllPayments = () => {
             </SelectTrigger>
             <SelectContent>
               <div className="space-y-2">
-                <SelectItem value={null}>All</SelectItem> {/* Use null here */}
+                <SelectItem value={null}>All</SelectItem> 
                 <SelectItem value="pending">Pending</SelectItem>
                 <SelectItem value="approved">Approved</SelectItem>
                 <SelectItem value="rejected">Rejected</SelectItem>

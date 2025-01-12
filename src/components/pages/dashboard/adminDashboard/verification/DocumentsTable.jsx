@@ -1,4 +1,3 @@
-// DocumentsTable.js
 import React, { useState } from "react";
 import {
   Table,
@@ -7,16 +6,20 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"; // Import ShadCN table components
+} from "@/components/ui/table";
 import DocumentPreview from "../../DocumentPreview";
+import moment from "moment";
+import { FaExchangeAlt } from "react-icons/fa"; // Switch icon for sorting
+import { IoSwapVertical } from "react-icons/io5";
 
 const DocumentsTable = ({ documents, onStatusChange }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
-  const [selectedDocument, setSelectedDocument] = useState(null); // Selected document
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDocument, setSelectedDocument] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc"); // State for sorting order
 
   const handleViewDocument = (document) => {
-    setSelectedDocument(document); // Set the selected document for the modal
-    setIsModalOpen(true); // Open the modal
+    setSelectedDocument(document);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
@@ -24,19 +27,45 @@ const DocumentsTable = ({ documents, onStatusChange }) => {
     setSelectedDocument(null); // Reset the selected document
   };
 
+  // Function to toggle sorting order and sort the documents
+  const toggleSortOrder = () => {
+    setSortOrder((prevSortOrder) => (prevSortOrder === "asc" ? "desc" : "asc"));
+  };
+
+  // Sort documents based on the selected order
+  const sortedDocuments = [...documents].sort((a, b) => {
+    const dateA = moment(a.uploaded_at);
+    const dateB = moment(b.uploaded_at);
+    if (sortOrder === "asc") {
+      return dateA.isBefore(dateB) ? -1 : 1; // Ascending order
+    }
+    return dateB.isBefore(dateA) ? -1 : 1; // Descending order
+  });
+
   return (
     <div>
       <Table className="min-w-full">
         <TableHeader>
           <TableRow>
             <TableHead>Document</TableHead>
+            <TableHead>
+              <div className="flex items-center">
+                Date
+                <span
+                  onClick={toggleSortOrder}
+                  className="cursor-pointer ml-1 text-lg"
+                >
+                  <IoSwapVertical />
+                </span>
+              </div>
+            </TableHead>
             <TableHead>Status</TableHead>
             <TableHead className="ps-16">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {documents.length > 0 ? (
-            documents.map((document) => (
+          {sortedDocuments.length > 0 ? (
+            sortedDocuments.map((document) => (
               <TableRow key={document.id}>
                 <TableCell>
                   <button
@@ -45,6 +74,9 @@ const DocumentsTable = ({ documents, onStatusChange }) => {
                   >
                     View Document
                   </button>
+                </TableCell>
+                <TableCell>
+                  {moment(document?.uploaded_at).format("DD-MM-YYYY")}
                 </TableCell>
                 <TableCell
                   className={`${
