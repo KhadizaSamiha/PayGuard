@@ -24,7 +24,7 @@ const DocumentForm = () => {
       await saveToDatabase(user.id, imageUrl);
       localStorage.removeItem("isPaymentDone");
       toast.success("File uploaded successfully!"); 
-      setTimeout(() => navigate("/home"), 2000);
+      setTimeout(() => navigate("/home"), 1000);
     } catch (error) {
       console.error("Error during upload:", error);
       toast.error("Error uploading file."); 

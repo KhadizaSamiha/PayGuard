@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/table";
 import DocumentPreview from "../../DocumentPreview";
 import moment from "moment";
-import { FaExchangeAlt } from "react-icons/fa"; // Switch icon for sorting
+import { FaExchangeAlt } from "react-icons/fa";
 import { IoSwapVertical } from "react-icons/io5";
 
 const DocumentsTable = ({ documents, onStatusChange }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState(null);
-  const [sortOrder, setSortOrder] = useState("asc"); // State for sorting order
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const handleViewDocument = (document) => {
     setSelectedDocument(document);
@@ -23,8 +23,8 @@ const DocumentsTable = ({ documents, onStatusChange }) => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
-    setSelectedDocument(null); // Reset the selected document
+    setIsModalOpen(false);
+    setSelectedDocument(null);
   };
 
   // Function to toggle sorting order and sort the documents
@@ -37,9 +37,9 @@ const DocumentsTable = ({ documents, onStatusChange }) => {
     const dateA = moment(a.uploaded_at);
     const dateB = moment(b.uploaded_at);
     if (sortOrder === "asc") {
-      return dateA.isBefore(dateB) ? -1 : 1; // Ascending order
+      return dateA.isBefore(dateB) ? -1 : 1;
     }
-    return dateB.isBefore(dateA) ? -1 : 1; // Descending order
+    return dateB.isBefore(dateA) ? -1 : 1;
   });
 
   return (
@@ -90,18 +90,20 @@ const DocumentsTable = ({ documents, onStatusChange }) => {
                   {document.status}
                 </TableCell>
                 <TableCell>
-                  <button
-                    onClick={() => onStatusChange(document._id, "approved")}
-                    className="bg-blue-400 px-3 py-1.5 rounded-lg text-white me-2"
-                  >
-                    Approve
-                  </button>
-                  <button
-                    onClick={() => onStatusChange(document._id, "rejected")}
-                    className="bg-red-400 px-3 py-1.5 rounded-lg text-white"
-                  >
-                    Reject
-                  </button>
+                  <div className="flex">
+                    <button
+                      onClick={() => onStatusChange(document._id, "approved")}
+                      className="bg-blue-400 px-3 py-1.5 rounded-lg text-white me-2"
+                    >
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => onStatusChange(document._id, "rejected")}
+                      className="bg-red-400 px-3 py-1.5 rounded-lg text-white"
+                    >
+                      Reject
+                    </button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))

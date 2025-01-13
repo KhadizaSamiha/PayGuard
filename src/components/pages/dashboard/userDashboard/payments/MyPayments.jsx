@@ -21,7 +21,7 @@ const MyPayments = () => {
         .then((response) => response.json())
         .then((data) => {
           setPayments(data);
-          setFilteredPayments(data); // Set initial filtered payments
+          setFilteredPayments(data); 
         })
         .catch((error) => console.error("Error fetching payments:", error));
     }
@@ -34,14 +34,14 @@ const MyPayments = () => {
         payments.filter((payment) => payment.status === filterStatus)
       );
     } else {
-      setFilteredPayments(payments); // Show all if no filter is selected
+      setFilteredPayments(payments); 
     }
   }, [filterStatus, payments]);
 
   return (
     <div>
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-2xl font-bold mb-5">My Payments</h1>
+        <h1 className="text-2xl font-bold mb-5 text-gray-700">My Payments</h1>
 
         {/* Filter by status */}
         <div className="mb-4">
@@ -51,7 +51,7 @@ const MyPayments = () => {
             </SelectTrigger>
             <SelectContent>
               <div className="space-y-2">
-                <SelectItem value={null}>All</SelectItem> {/* Use empty string here */}
+                <SelectItem value={null}>All</SelectItem> 
                 <SelectItem value="pending">Pending</SelectItem>
                 <SelectItem value="approved">Approved</SelectItem>
                 <SelectItem value="rejected">Rejected</SelectItem>

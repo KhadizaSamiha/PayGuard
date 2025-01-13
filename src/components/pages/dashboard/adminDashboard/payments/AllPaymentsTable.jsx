@@ -11,7 +11,7 @@ import moment from "moment";
 import { IoSwapVertical } from "react-icons/io5";
 
 const AllPaymentsTable = ({ payments, onStatusChange }) => {
-  const [sortOrder, setSortOrder] = useState("asc"); // State for sorting order
+  const [sortOrder, setSortOrder] = useState("asc");
 
   // Function to toggle sorting order and sort the payments
   const toggleSortOrder = () => {
@@ -23,9 +23,9 @@ const AllPaymentsTable = ({ payments, onStatusChange }) => {
     const dateA = moment(a.created_at);
     const dateB = moment(b.created_at);
     if (sortOrder === "asc") {
-      return dateA.isBefore(dateB) ? -1 : 1; // Ascending order
+      return dateA.isBefore(dateB) ? -1 : 1;
     }
-    return dateB.isBefore(dateA) ? -1 : 1; // Descending order
+    return dateB.isBefore(dateA) ? -1 : 1;
   });
 
   return (
@@ -70,18 +70,20 @@ const AllPaymentsTable = ({ payments, onStatusChange }) => {
                 {payment.status}
               </TableCell>
               <TableCell>
-                <button
-                  onClick={() => onStatusChange(payment._id, "approved")}
-                  className="bg-blue-400 px-3 py-1.5 rounded-lg text-white me-2"
-                >
-                  Approve
-                </button>
-                <button
-                  onClick={() => onStatusChange(payment._id, "rejected")}
-                  className="bg-red-400 px-3 py-1.5 rounded-lg text-white"
-                >
-                  Reject
-                </button>
+                <div className="flex">
+                  <button
+                    onClick={() => onStatusChange(payment._id, "approved")}
+                    className="bg-blue-400 px-3 py-1.5 rounded-lg text-white me-2"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    onClick={() => onStatusChange(payment._id, "rejected")}
+                    className="bg-red-400 px-3 py-1.5 rounded-lg text-white"
+                  >
+                    Reject
+                  </button>
+                </div>
               </TableCell>
             </TableRow>
           ))

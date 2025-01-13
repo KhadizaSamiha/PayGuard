@@ -117,7 +117,7 @@ const PaymentForm = () => {
   };
 
   return (
-    <div className="bg-gray-800 h-screen py-20">
+    <div className="bg-gray-800 h-screen md:py-20">
       <form
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto px-4 pb-16 pt-10 bg-gray-600 shadow-lg rounded-lg text-white"

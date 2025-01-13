@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DocumentsTable from "./DocumentsTable";
+import { showToast } from "@/utils/toastUtils";
 
 const AllDocuments = () => {
   const [documents, setDocuments] = useState([]);
@@ -13,13 +14,16 @@ const AllDocuments = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const response = await fetch(`https://payguard-server-production.up.railway.app/documents/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status: newStatus }),
-      });
+      const response = await fetch(
+        `https://payguard-server-production.up.railway.app/documents/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
   
       const data = await response.json();
       if (response.ok) {
@@ -28,19 +32,20 @@ const AllDocuments = () => {
             document._id === id ? { ...document, status: newStatus } : document
           )
         );
+        showToast("Document status updated successfully!");
       } else {
-        alert(data.message); // Show any error message from the backend
+        showToast(data.message || "Failed to update document status.", "error");
       }
     } catch (error) {
       console.error(error);
-      alert("Failed to update status. Please try again.");
+      showToast("Failed to update document status. Please try again.", "error");
     }
   };
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">All Documents</h1>
-      <DocumentsTable documents={documents} onStatusChange={handleStatusChange}/> {/* Pass documents as a prop */}
+      <h1 className="text-2xl font-bold mb-4 text-gray-700">All Documents</h1>
+      <DocumentsTable documents={documents} onStatusChange={handleStatusChange}/> 
     </div>
   );
 };

@@ -46,7 +46,7 @@ const Navbar = () => {
     <nav className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between text-white gap-5">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center md:gap-2 gap-1">
             <img src={Guard} alt="logo" className="h-11 w-11" />
             <h1 className="text-3xl italic font-semibold mb-2 bg-gradient-to-r from-blue-300 to-blue-400 bg-clip-text text-transparent">
               PayGuard
@@ -62,7 +62,6 @@ const Navbar = () => {
                   className="h-8 w-8 rounded-full cursor-pointer"
                   onClick={toggleDropdown}
                 />
-                {/* Dropdown Menu */}
                 {dropdownOpen && (
                   <div
                     ref={dropdownRef}

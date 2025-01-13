@@ -6,14 +6,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"; // Import ShadCN table components
+} from "@/components/ui/table"; 
 import moment from "moment";
-import { IoSwapVertical } from "react-icons/io5"; // Switch icon for sorting
+import { IoSwapVertical } from "react-icons/io5"; 
 
-const MyPaymentsTable = ({ payments, onStatusChange }) => {
-  const [sortOrder, setSortOrder] = useState("asc"); // State for sorting order
+const MyPaymentsTable = ({ payments }) => {
+  const [sortOrder, setSortOrder] = useState("asc"); 
 
-  // Function to toggle sorting order and sort the payments
   const toggleSortOrder = () => {
     setSortOrder((prevSortOrder) => (prevSortOrder === "asc" ? "desc" : "asc"));
   };
@@ -44,7 +43,7 @@ const MyPaymentsTable = ({ payments, onStatusChange }) => {
                 onClick={toggleSortOrder}
                 className="cursor-pointer ml-1 text-lg"
               >
-                <IoSwapVertical /> {/* Sort icon */}
+                <IoSwapVertical /> 
               </span>
             </div>
           </TableHead>
@@ -56,28 +55,28 @@ const MyPaymentsTable = ({ payments, onStatusChange }) => {
       <TableBody>
         {sortedPayments.length > 0 ? (
           sortedPayments.map((payment) => (
-            <TableRow key={payment._id}>
-              <TableCell>{payment.title}</TableCell>
+            <TableRow key={payment?._id}>
+              <TableCell>{payment?.title}</TableCell>
               <TableCell>
                 {moment(payment?.created_at).format("DD-MM-YYYY")}
               </TableCell>
-              <TableCell>${payment.amount}</TableCell>
+              <TableCell>${payment?.amount}</TableCell>
               <TableCell
                 className={`${
-                  payment.status === "approved"
+                  payment?.status === "approved"
                     ? "text-green-500"
-                    : payment.status === "pending"
+                    : payment?.status === "pending"
                     ? "text-yellow-500"
                     : "text-red-500"
                 }`}
               >
-                {payment.status}
+                {payment?.status}
               </TableCell>
               <TableCell>
-                {payment.status === "approved" ? (
+                {payment?.status === "approved" ? (
                   <button
                     className="px-2 py-1 bg-blue-500 text-white rounded-md"
-                    onClick={() => handleDownloadInvoice(payment._id)}
+                    onClick={() => handleDownloadInvoice(payment?._id)}
                   >
                     Download Invoice
                   </button>

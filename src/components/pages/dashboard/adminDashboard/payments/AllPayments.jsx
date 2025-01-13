@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { showToast } from "@/utils/toastUtils";
 
 const AllPayments = () => {
   const [payments, setPayments] = useState([]);
@@ -35,14 +36,17 @@ const AllPayments = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const response = await fetch(`https://payguard-server-production.up.railway.app/payments/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status: newStatus }),
-      });
-
+      const response = await fetch(
+        `https://payguard-server-production.up.railway.app/payments/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
+  
       const data = await response.json();
       if (response.ok) {
         setPayments((prevPayments) =>
@@ -50,19 +54,20 @@ const AllPayments = () => {
             payment._id === id ? { ...payment, status: newStatus } : payment
           )
         );
+        showToast("Status updated successfully!");
       } else {
-        alert(data.message);
+        showToast(data.message || "Failed to update status.", "error");
       }
     } catch (error) {
       console.error(error);
-      alert("Failed to update status. Please try again.");
+      showToast("Failed to update status. Please try again.", "error");
     }
   };
 
   return (
     <div>
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold mb-5">All Payments</h1>
+        <h1 className="text-2xl font-bold mb-5 text-gray-700">All Payments</h1>
 
         {/* Filter by status */}
         <div className="mb-4">

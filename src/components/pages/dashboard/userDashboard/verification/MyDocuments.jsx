@@ -8,7 +8,7 @@ const MyDocuments = () => {
   
   useEffect(() => {
     if (user && user.id) {
-      fetch(`https://payguard-server-production.up.railway.app/documents/${user.id}`)  // Pass user._id in the URL
+      fetch(`https://payguard-server-production.up.railway.app/documents/${user.id}`) 
         .then((response) => response.json())
         .then((data) => setDocuments(data))
         .catch((error) => console.error("Error fetching documents:", error));
@@ -17,7 +17,7 @@ const MyDocuments = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">My documents</h1>
+      <h1 className="text-2xl font-bold mb-4 text-gray-700">My documents</h1>
       <MyDocumentsTable documents={documents} />
     </div>
   );

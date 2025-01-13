@@ -8,7 +8,7 @@ const DocumentPreview = ({ document, onClose }) => {
         <h2 className="text-xl font-bold mb-4">Document Preview</h2>
         <div className="flex justify-center">
           <img
-            src={document.file_url} // Assuming imageUrl field in the document
+            src={document.file_url} 
             alt="Document"
             className="max-w-full max-h-96 object-contain"
           />
